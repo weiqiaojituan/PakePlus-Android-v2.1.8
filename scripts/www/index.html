@@ -3,7 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-	<title>切氧参数计算器</title>
+	<title>切氧计算器</title>
 	<style>
 		:root {
 			--primary: #3498db; --success: #2ecc71; --warning: #f39c12; --danger: #e74c3c;
@@ -44,7 +44,7 @@
 	</style>
 </head>
 <body>
-	<div class="header"><h1>切氧参数计算器</h1></div>
+	<div class="header"><h1>切氧参考计算</h1></div>
 	<div id="toast">提示</div>
 	<div class="container">
 		<details>
@@ -56,7 +56,7 @@
 				<div class="config-item"><label>加煤 K2</label><input type="number" id="coalK2" value="0.0017"></div>
 				<div class="config-item"><label>加煤 K3</label><input type="number" id="coalK3" value="3.23"></div>
 				<div class="config-item"><label>蒸汽体积系数</label><input type="number" id="volFactor" value="1.244"></div>
-				<div class="config-item"><label>固定碳 FC (%)</label><input type="number" id="fixedCarbon" value="65"></div>
+				<div class="config-item"><label>固定碳  (%)</label><input type="number" id="fixedCarbon" value="65"></div>
 			</div>
 		</details>
 		<div id="cardContainer"></div>
@@ -89,13 +89,13 @@
 			<div class="grid-layout">
 				${isM?`
 				<div class="field" style="grid-column: span 2;"><label>总气量<span class="unit">Nm³/h</span></label><input type="number" class="edit-input" value="${item.manualTotalWind||0}" oninput="updateVal(${index},'manualTotalWind',this.value)"></div>
-				<div class="field"><label>鼓风机频率<span class="unit">Hz</span></label><input type="number" class="edit-input" value="${item.fan||0}" oninput="updateVal(${index},'fan',this.value)"></div>
-				<div class="field"><label>设定氧气配比<span class="unit">%</span></label><input type="number" class="edit-input" value="${item.manualTargetO2||21}" oninput="updateVal(${index},'manualTargetO2',this.value)"></div>
-				<div class="field"><label>鼓风机风量</label><div class="val" id="windFlow-${index}">-</div></div>
-				<div class="field"><label>兑入氧气量</label><div class="val res-highlight" id="addO2-${index}">-</div></div>
+				<div class="field"><label>风机频率<span class="unit">Hz</span></label><input type="number" class="edit-input" value="${item.fan||0}" oninput="updateVal(${index},'fan',this.value)"></div>
+				<div class="field"><label>设定氧配比<span class="unit">%</span></label><input type="number" class="edit-input" value="${item.manualTargetO2||21}" oninput="updateVal(${index},'manualTargetO2',this.value)"></div>
+				<div class="field"><label>鼓风风量</label><div class="val" id="windFlow-${index}">-</div></div>
+				<div class="field"><label>兑入氧量</label><div class="val res-highlight" id="addO2-${index}">-</div></div>
 				<div class="field"><label>兑入蒸汽量</label><div class="val res-steam" id="steam-${index}">-</div></div>
 				<div class="field"><label>总气量</label><div class="val" id="totalWind-${index}">-</div></div>
-				<div class="field" style="grid-column:span2"><label>估算煤量(固定碳模式)</label><div class="val res-success" id="coal-${index}">-</div></div>
+				<div class="field" style="grid-column:span2"><label>估算煤量</label><div class="val res-success" id="coal-${index}">-</div></div>
 				`:``}
 				${!isM?`
 				<div class="field"><label>风机频率(Hz)</label><input type="number" class="edit-input" value="${item.fan}" oninput="updateVal(${index},'fan',this.value)"></div>
